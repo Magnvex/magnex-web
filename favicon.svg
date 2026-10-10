@@ -1,0 +1,10 @@
+<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+  <polygon points="50,3 3,50 50,97 97,50" fill="#0D0E1C" stroke="#7C6FF0" stroke-width="1.2"/>
+  <polygon points="50,3 3,50 50,50"  fill="#F0EEFF"/>
+  <polygon points="50,3 50,50 97,50" fill="#7C6FF0"/>
+  <polygon points="3,50 50,50 50,97" fill="#E8E4FF"/>
+  <polygon points="50,50 97,50 50,97" fill="#EBE8FF"/>
+  <line x1="3" y1="50" x2="97" y2="50" stroke="#C8A84B" stroke-width="1.5"/>
+  <line x1="50" y1="3" x2="50" y2="97" stroke="#C8A84B" stroke-width="1.5"/>
+  <polygon points="50,3 97,50 50,97 3,50" fill="none" stroke="#7C6FF0" stroke-width="1.5"/>
+</svg>
