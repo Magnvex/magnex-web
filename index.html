@@ -378,27 +378,27 @@
           <li><b>9:16 + 16:9</b>Vertical y horizontal</li>
           <li><b>Música + SFX</b>Sonido incluido</li>
         </ul>
+        <div class="ads-demos rv">
+          <span class="mono">Mira nuestras demos</span>
+          <button class="ads-demo" type="button" data-ad="pizza"><span class="ads-demo-play" aria-hidden="true">▶</span>Pizza La Serranito</button>
+          <button class="ads-demo" type="button" data-ad="cerveza"><span class="ads-demo-play" aria-hidden="true">▶</span>Spot de cerveza</button>
+        </div>
       </div>
-      <div class="ads-stage" id="ads-stage" aria-hidden="true">
+      <div class="ads-stage" id="ads-stage">
         <div class="ads-scene" id="ads-scene">
-          <div class="reel reel-h" data-depth="-0.6">
-            <div class="reel-ui mono"><span><i class="rec"></i>REC</span><span>16:9 · Campañas</span></div>
-            <div class="reel-art art-a"><div class="art-beam"></div><div class="art-prod"></div></div>
-            <div class="reel-bar"><i></i></div>
-            <div class="reel-ui bottom mono"><span>00:00:12:04</span><span>4K</span></div>
-          </div>
-          <div class="reel reel-v" data-depth="0.9">
-            <div class="reel-ui mono"><span><i class="rec"></i>REC</span><span>9:16 · Reels</span></div>
-            <div class="reel-art art-b"><div class="art-beam"></div><div class="art-prod"></div><div class="art-cap">Spot<br>cinematográfico</div></div>
-            <div class="reel-bar"><i></i></div>
-            <div class="reel-ui bottom mono"><span>00:00:15:00</span><span>♪ Música + SFX</span></div>
-          </div>
-          <div class="reel reel-s" data-depth="0.25">
-            <div class="reel-ui mono"><span>1:1 · Feed</span><span>Story</span></div>
-            <div class="reel-art art-c"><div class="art-prod"></div></div>
-            <div class="reel-bar"><i></i></div>
-          </div>
-          <div class="ads-ring" data-depth="-1.2"></div>
+          <button class="reel reel-h" type="button" data-depth="-0.6" data-ad="pizza" aria-label="Ver el anuncio de la pizza La Serranito con sonido">
+            <video class="reel-video" src="assets/media/anuncios/pizza-serranito-loop.mp4" poster="assets/media/anuncios/pizza-serranito-poster.jpg" muted loop playsinline preload="none" aria-hidden="true"></video>
+            <span class="reel-ui mono"><span><i class="rec"></i>Demo</span><span>16:9 · Campañas</span></span>
+            <span class="reel-cap"><b>Pizza La Serranito</b><span class="reel-play mono">▶ Ver con sonido</span></span>
+            <span class="reel-bar"><i></i></span>
+          </button>
+          <button class="reel reel-v" type="button" data-depth="0.9" data-ad="cerveza" aria-label="Ver el anuncio de cerveza con sonido">
+            <video class="reel-video" src="assets/media/anuncios/cerveza-loop.mp4" poster="assets/media/anuncios/cerveza-poster.jpg" muted loop playsinline preload="none" aria-hidden="true"></video>
+            <span class="reel-ui mono"><span><i class="rec"></i>Demo</span><span>9:16 · Reels</span></span>
+            <span class="reel-cap"><b>Spot de cerveza</b><span class="reel-play mono">▶ Ver con sonido</span></span>
+            <span class="reel-bar"><i></i></span>
+          </button>
+          <div class="ads-ring" data-depth="-1.2" aria-hidden="true"></div>
         </div>
       </div>
     </div>
@@ -572,6 +572,15 @@
     <div class="modal-feats-title mono">Qué incluye</div>
     <div id="modal-feats"></div>
     <a href="#contacto" class="btn btn-primary" id="modal-cta">Lo quiero <span class="arrow">→</span></a>
+  </div>
+</div>
+
+<div class="ad-box" id="ad-box" role="dialog" aria-modal="true" aria-labelledby="ad-box-name">
+  <div class="modal-bd" data-close></div>
+  <div class="ad-box-inner">
+    <div class="ad-box-head"><div><div class="mono ad-box-tag">Demo · Anuncio con IA</div><div class="ad-box-name" id="ad-box-name"></div></div><button class="modal-close" type="button" data-close aria-label="Cerrar">✕</button></div>
+    <video id="ad-box-video" controls playsinline controlslist="nodownload" preload="none"></video>
+    <a href="#contacto" class="btn btn-primary" data-close>Quiero un anuncio así <span class="arrow">→</span></a>
   </div>
 </div>
 

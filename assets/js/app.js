@@ -91,7 +91,7 @@ if (finePointer && !reduced) {
     requestAnimationFrame(loop);
   })();
   document.addEventListener('pointerover', e => {
-    const card = e.target.closest('.svc');
+    const card = e.target.closest('.svc, .reel');
     const link = e.target.closest('a, button, input, textarea');
     ring.classList.toggle('label', !!card);
     ring.classList.toggle('hover', !card && !!link);
@@ -186,7 +186,7 @@ function closeModal() {
 $('#modal-close').addEventListener('click', closeModal);
 $('#modal-bd').addEventListener('click', closeModal);
 $('#modal-cta').addEventListener('click', closeModal);
-addEventListener('keydown', e => { if (e.key === 'Escape') { closeModal(); document.body.classList.remove('menu-open'); } });
+addEventListener('keydown', e => { if (e.key === 'Escape') { closeModal(); closeAd(); document.body.classList.remove('menu-open'); } });
 $$('[data-service]').forEach(c => {
   c.addEventListener('click', () => openModal(c.dataset.service));
   c.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openModal(c.dataset.service); } });
@@ -222,6 +222,44 @@ if (video) {
     syncSound();
   });
   video.addEventListener('volumechange', syncSound);
+}
+
+/* ---------- Anuncios: demos en bucle y visor ---------- */
+const ADS = {
+  pizza: { name: 'Pizza La Serranito', src: 'assets/media/anuncios/pizza-serranito.mp4', poster: 'assets/media/anuncios/pizza-serranito-poster-h.jpg', ratio: '16 / 9' },
+  cerveza: { name: 'Spot de cerveza', src: 'assets/media/anuncios/cerveza.mp4', poster: 'assets/media/anuncios/cerveza-poster-h.jpg', ratio: '3 / 2' }
+};
+const adBox = $('#ad-box'), adVideo = $('#ad-box-video');
+let adFocus = null;
+function openAd(key) {
+  const d = ADS[key]; if (!d) return;
+  adFocus = document.activeElement;
+  $('#ad-box-name').textContent = d.name;
+  if (adVideo.getAttribute('src') !== d.src) { adVideo.poster = d.poster; adVideo.src = d.src; }
+  adVideo.style.aspectRatio = d.ratio;
+  adVideo.currentTime = 0; adVideo.muted = false;
+  if (Sound.on) soundBtn.click();
+  if (video && !video.paused) video.pause();
+  adBox.classList.add('open'); document.body.classList.add('modal-open');
+  lenis && lenis.stop(); document.documentElement.style.overflow = 'hidden';
+  adVideo.play().catch(() => { });
+  setTimeout(() => $('.modal-close', adBox).focus(), 50);
+}
+function closeAd() {
+  if (!adBox.classList.contains('open')) return;
+  adVideo.pause(); adBox.classList.remove('open'); document.body.classList.remove('modal-open');
+  lenis && lenis.start(); document.documentElement.style.overflow = '';
+  adFocus && adFocus.focus && adFocus.focus({ preventScroll: true });
+}
+$$('[data-ad]').forEach(b => b.addEventListener('click', () => openAd(b.dataset.ad)));
+$$('[data-close]', adBox).forEach(b => b.addEventListener('click', closeAd));
+const reelVideos = $$('.reel-video');
+reelVideos.forEach(v => {
+  const bar = v.parentElement.querySelector('.reel-bar i');
+  v.addEventListener('timeupdate', () => { if (v.duration) bar.style.transform = `scaleX(${v.currentTime / v.duration})`; });
+});
+if (!reduced && reelVideos.length) {
+  new IntersectionObserver(([en]) => reelVideos.forEach(v => en.isIntersecting ? v.play().catch(() => { }) : v.pause()), { threshold: 0.2 }).observe($('#ads-stage'));
 }
 
 /* ---------- Formulario ---------- */
