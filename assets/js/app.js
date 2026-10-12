@@ -133,22 +133,22 @@ tickClock(); setInterval(tickClock, 30000);
 
 /* ---------- Modal de servicios ---------- */
 const SVC = {
-  auditoria: { icon: 'i-target', name: 'Auditoría Estratégica', sub: 'Diagnóstico completo · Entrega en 48h · Precio de lanzamiento 197 €',
+  auditoria: { icon: 'i-target', name: 'Auditoría Estratégica', sub: 'Diagnóstico completo · Entrega en 48h · Inversión a medida',
     desc: 'Analizamos tu negocio de arriba a abajo en menos de 48 horas. Detectamos exactamente qué te está frenando y te entregamos un plan de acción concreto y priorizado para empezar a crecer desde el primer día. Sin rodeos, sin relleno: solo la verdad de tu negocio y cómo mejorarla.',
     feats: ['Análisis completo de tu presencia digital actual', 'Evaluación de captación y conversión de clientes', 'Detección de fallos operativos que te cuestan dinero', 'Oportunidades de IA específicas para tu tipo de negocio', 'Plan de acción priorizado y 100% accionable', 'Informe profesional en PDF listo para compartir'] },
-  instagram: { icon: 'i-camera', name: 'Marca en Instagram', sub: 'Perfil profesional que atrae clientes · Entrega en 5 días · Desde 147 €',
+  instagram: { icon: 'i-camera', name: 'Marca en Instagram', sub: 'Perfil profesional que atrae clientes · Entrega en 5 días · Inversión a medida',
     desc: 'Transformamos tu perfil de Instagram en una máquina de atraer clientes. Construimos una identidad visual coherente, una bio que convierte y una estrategia de contenido clara para que tu negocio destaque y genere confianza desde el primer vistazo.',
     feats: ['Auditoría completa de tu perfil actual', 'Bio rediseñada y optimizada para la conversión', 'Identidad visual coherente con tu marca', 'Guía de contenido, tono de voz y frecuencia', '12 plantillas de publicación listas para usar', 'Estrategia de hashtags para aumentar el alcance'] },
-  web: { icon: 'i-web', name: 'Web Profesional', sub: 'Web que convierte visitas en clientes · Entrega en 7 días · Desde 397 €',
+  web: { icon: 'i-web', name: 'Web Profesional', sub: 'Web que convierte visitas en clientes · Entrega en 7 días · Inversión a medida',
     desc: 'Diseñamos y desarrollamos tu web a medida: una página que no solo se ve bien, sino que trabaja para ti las 24 horas. Rápida, optimizada para buscadores, perfecta en móvil y lista para publicar. Una web que transmite autoridad y convierte visitantes en clientes reales.',
     feats: ['Diseño exclusivo a medida para tu negocio', 'Optimizada para móvil, tablet y escritorio', 'SEO básico para que te encuentren en Google', 'Formulario de contacto funcional', 'Velocidad de carga optimizada al máximo', 'Publicación online incluida', '1 mes de soporte después de la entrega'] },
-  automatizacion: { icon: 'i-chat', name: 'Bot de Reservas Esencial', sub: 'Recepcionista de IA en WhatsApp · Setup 1.490 € + 290 €/mes',
+  automatizacion: { icon: 'i-chat', name: 'Bot de Reservas Esencial', sub: 'Recepcionista de IA en WhatsApp · Entrega en 7–10 días',
     desc: 'Montamos un bot de inteligencia artificial en tu WhatsApp que atiende a tus pacientes las 24 horas: coge la cita, la confirma y envía recordatorios automáticos para que no se les olvide. El resultado: menos huecos en tu agenda y menos no-shows. Una sola cita recuperada al mes ya cubre buena parte de la mensualidad.',
     feats: ['Reservas automáticas por WhatsApp, 24/7', 'Confirmaciones y recordatorios de cita automáticos', 'Reduce drásticamente los no-shows', 'Responde solo a las preguntas frecuentes de pacientes', 'Aviso instantáneo a tu equipo de cada nueva reserva', 'Puesta en marcha en 7–10 días · sin permanencia'] },
-  'automatizacion-pro': { icon: 'i-cycle', name: 'Sistema de Reservas Pro', sub: 'Agenda llena y pacientes que vuelven · Setup 3.900 € + 690 €/mes',
+  'automatizacion-pro': { icon: 'i-cycle', name: 'Sistema de Reservas Pro', sub: 'Agenda llena y pacientes que vuelven · Entrega en 2–3 semanas',
     desc: 'El sistema completo para que tu agenda no pare. Además de coger y recordar citas, gestiona reprogramaciones y cancelaciones solo, mantiene una lista de espera que rellena los huecos al instante y reactiva a pacientes que llevan tiempo sin venir. Cuesta menos que media recepcionista y trabaja sin descanso, sin bajas y sin vacaciones.',
     feats: ['Todo lo del plan Esencial incluido', 'Reprogramación y cancelaciones automáticas', 'Lista de espera inteligente que rellena huecos al momento', 'Reactivación automática de pacientes inactivos', 'Sincronización con tu calendario o Google Sheets', 'Recordatorios multicanal (WhatsApp + email)', 'Optimización continua y soporte prioritario'] },
-  'automatizacion-premium': { icon: 'i-grid', name: 'Automatización a Medida', sub: 'Para grupos y multi-sede · desde 9.000 € + desde 1.500 €/mes',
+  'automatizacion-premium': { icon: 'i-grid', name: 'Automatización a Medida', sub: 'Para grupos y multi-sede · Propuesta a medida',
     desc: 'La solución para grupos de clínicas y negocios donde cada hora de agenda mueve mucho dinero. Integramos tu software de gestión (Gesden, Klinikare y similares), tu CRM y tu facturación en un sistema de IA que orquesta todo el flujo de pacientes entre sedes. Lo diseñamos a medida de tus procesos, con panel de métricas y soporte dedicado.',
     feats: ['Todo lo del plan Pro incluido', 'Integración con tu software dental, CRM y facturación', 'Gestión multi-sede y multi-agenda', 'IA conversacional avanzada adaptada a tu negocio', 'Panel de métricas y reporting en tiempo real', 'SLA garantizado y soporte dedicado', 'Presupuesto personalizado según tu operativa'] }
 };
