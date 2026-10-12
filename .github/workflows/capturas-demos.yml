@@ -1,0 +1,35 @@
+# Saca una vez las capturas de las demos para la sección «Trabajos», las guarda en la rama
+# y se borra a sí mismo en ese mismo commit.
+name: Capturas de las demos
+on:
+  push:
+    branches: [web-demos-precio-a-medida]
+    paths: ['.github/workflows/capturas-demos.yml', '.github/capturas/**']
+permissions:
+  contents: write
+jobs:
+  capturas:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Instalar herramientas
+        run: cd .github/capturas && npm install --no-save --no-package-lock puppeteer-core@24 sharp@0.34
+      - name: Sacar capturas
+        run: node .github/capturas/shot.cjs
+      - name: Guardar capturas en la rama
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git rm -rq --cached .github
+          git add assets/media/demos
+          git commit -F - <<'MSG'
+          Cambia las capturas de las demos por sus portadas en ordenador y móvil
+
+          Co-Authored-By: Claude Opus 5.5 (1M context) <noreply@anthropic.com>
+          Claude-Session: https://claude.ai/code/session_01PgpBQFAFw4iBuFkZpCiSQF
+          MSG
+          git push
