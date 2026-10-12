@@ -262,12 +262,6 @@ if (!reduced && reelVideos.length) {
   new IntersectionObserver(([en]) => reelVideos.forEach(v => en.isIntersecting ? v.play().catch(() => { }) : v.pause()), { threshold: 0.2 }).observe($('#ads-stage'));
 }
 
-/* ---------- Trabajos: en pantallas táctiles la captura se recorre sola al verse ---------- */
-if (!reduced && matchMedia('(hover: none)').matches) {
-  const panIO = new IntersectionObserver(ens => ens.forEach(en => en.target.classList.toggle('panning', en.isIntersecting)), { threshold: 0.65 });
-  $$('.work-card').forEach(c => panIO.observe(c));
-}
-
 /* ---------- Formulario ---------- */
 const form = $('#contactForm'), fbtn = $('#formBtn'), ftxt = fbtn.querySelector('.txt');
 form.addEventListener('submit', async e => {
@@ -532,6 +526,16 @@ function initScroll() {
   }
   // teléfono del bot: entra girando
   gsap.fromTo('#phone .phone-frame', { rotateY: -24, rotateX: 8, transformPerspective: 1200 }, { rotateY: 0, rotateX: 0, ease: 'none', scrollTrigger: { trigger: '#phone', start: 'top bottom', end: 'center 55%', scrub: true } });
+
+  // trabajos: cada demo entra girando en 3D, la captura hace parallax y el móvil sube al hacer scroll
+  $$('.work-card').forEach((card, i) => {
+    const frame = card.querySelector('.work-frame'), shot = card.querySelector('.work-shot > img'), phone = card.querySelector('.work-phone');
+    gsap.fromTo(frame, { rotateX: 16, rotateY: i % 2 ? -9 : 9, y: 70, scale: 0.94, transformPerspective: 1400, transformOrigin: '50% 100%' },
+      { rotateX: 0, rotateY: 0, y: 0, scale: 1, ease: 'none', scrollTrigger: { trigger: card, start: 'top bottom', end: 'top 55%', scrub: 0.6 } });
+    if (shot) gsap.fromTo(shot, { yPercent: -3, scale: 1.08 }, { yPercent: 3, scale: 1.08, ease: 'none', scrollTrigger: { trigger: card, start: 'top bottom', end: 'bottom top', scrub: true } });
+    if (phone) gsap.fromTo(phone, { yPercent: 38 }, { yPercent: -6, ease: 'none', scrollTrigger: { trigger: card, start: 'top 95%', end: 'bottom 40%', scrub: 0.8 } });
+  });
+  ScrollTrigger.create({ trigger: '.work-grid', start: 'top 75%', once: true, onEnter: () => Sound.whoosh(0.6) });
 
   // parallax
   $$('[data-speed]').forEach(el => gsap.to(el, { y: () => +el.dataset.speed * 300, ease: 'none', scrollTrigger: { trigger: el.parentElement, start: 'top bottom', end: 'bottom top', scrub: true } }));

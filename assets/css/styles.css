@@ -444,6 +444,15 @@ footer{padding:80px 0 34px;border-top:1px solid var(--line);overflow:hidden}
 .wa-float:hover span{max-width:110px}
 .menu-open .wa-float,.modal-open .wa-float{opacity:0;pointer-events:none}
 
+/* Instagram flotante */
+.ig-float{position:fixed;z-index:140;left:max(18px,env(safe-area-inset-left,0px));bottom:max(18px,env(safe-area-inset-bottom,0px));display:flex;align-items:center;gap:0;padding:14px;border-radius:40px;background:linear-gradient(45deg,#f58529 0%,#dd2a7b 45%,#8134af 78%,#515bd4 100%);color:#fff;text-decoration:none;font-weight:600;font-size:.9rem;box-shadow:0 14px 40px -6px rgba(221,42,123,.45);transition:gap .5s var(--ease),padding .5s var(--ease),transform .5s var(--ease),opacity .5s}
+.ig-float svg{width:26px;height:26px;flex:none}
+.ig-float span{max-width:0;overflow:hidden;white-space:nowrap;transition:max-width .5s var(--ease)}
+.ig-float:hover,.ig-float:focus-visible{gap:10px;padding:14px 20px 14px 16px}
+.ig-float:hover span,.ig-float:focus-visible span{max-width:170px}
+.menu-open .ig-float,.modal-open .ig-float{opacity:0;pointer-events:none}
+@media (max-width:600px){footer{padding-bottom:96px}}
+
 @media (max-width:1080px){
   .bot-demo{grid-template-columns:1fr;gap:56px}
   .ads-intro{grid-template-columns:1fr}
@@ -471,15 +480,18 @@ footer{padding:80px 0 34px;border-top:1px solid var(--line);overflow:hidden}
 .work-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:clamp(30px,3vw,44px) clamp(18px,2.2vw,30px)}
 .work-card{grid-column:span 2;display:flex;flex-direction:column;gap:20px;text-decoration:none;color:inherit;outline:none}
 .work-card:nth-child(-n+2){grid-column:span 3}
-.work-frame{position:relative;border-radius:18px;border:1px solid var(--line);background:var(--surface);overflow:hidden;transition:border-color .5s,transform .9s var(--ease),box-shadow .9s var(--ease)}
-.work-card:hover .work-frame,.work-card:focus-visible .work-frame{border-color:var(--violet-line);transform:translateY(-6px);box-shadow:0 34px 80px rgba(0,0,0,.5),0 0 0 1px rgba(124,111,240,.12)}
+.work-frame{position:relative;border-radius:18px;border:1px solid var(--line);background:var(--surface);overflow:hidden;will-change:transform;transition:border-color .5s,translate .9s var(--ease),box-shadow .9s var(--ease)}
+.work-card:hover .work-frame,.work-card:focus-visible .work-frame{border-color:var(--violet-line);translate:0 -6px;box-shadow:0 34px 80px rgba(0,0,0,.5),0 0 0 1px rgba(124,111,240,.12)}
 .work-card:focus-visible .work-frame{outline:2px solid var(--violet-hi);outline-offset:4px}
 .work-bar{display:flex;align-items:center;gap:6px;height:34px;padding:0 14px;border-bottom:1px solid var(--line);background:var(--surface2)}
 .work-bar i{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.14)}
 .work-bar span{margin-left:10px;font-family:var(--mono);font-size:.64rem;color:var(--text-muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .work-shot{position:relative;aspect-ratio:16/10;overflow:hidden;background:linear-gradient(160deg,var(--surface2),var(--surface))}
-.work-shot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 0;transition:object-position 7s cubic-bezier(.45,0,.25,1),transform 1.2s var(--ease)}
-.work-card:hover .work-shot img,.work-card:focus-visible .work-shot img,.work-card.panning .work-shot img{object-position:50% 100%}
+.work-shot>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 0;transition:scale 1.4s var(--ease)}
+.work-card:hover .work-shot>img,.work-card:focus-visible .work-shot>img{scale:1.035}
+.work-phone{position:absolute;right:6%;bottom:-16%;width:22%;aspect-ratio:300/650;padding:1.4%;border-radius:15%/7%;background:#0b0c12;border:1px solid rgba(255,255,255,.14);box-shadow:0 24px 50px rgba(0,0,0,.55);transition:translate 1.1s var(--ease)}
+.work-phone img{display:block;width:100%;height:100%;object-fit:cover;object-position:50% 0;border-radius:12%/5.5%}
+.work-card:hover .work-phone,.work-card:focus-visible .work-phone{translate:0 -8%}
 .work-meta{display:grid;grid-template-columns:auto 1fr auto;gap:18px;align-items:center;padding:0 4px}
 .work-n{color:var(--gold)}
 .work-txt h3{font-family:var(--display);font-weight:700;font-size:clamp(1.2rem,1.7vw,1.55rem);line-height:1.15;letter-spacing:-.015em;transition:transform .6s var(--ease)}
