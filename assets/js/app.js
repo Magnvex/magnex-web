@@ -262,6 +262,12 @@ if (!reduced && reelVideos.length) {
   new IntersectionObserver(([en]) => reelVideos.forEach(v => en.isIntersecting ? v.play().catch(() => { }) : v.pause()), { threshold: 0.2 }).observe($('#ads-stage'));
 }
 
+/* ---------- Trabajos: en pantallas táctiles la captura se recorre sola al verse ---------- */
+if (!reduced && matchMedia('(hover: none)').matches) {
+  const panIO = new IntersectionObserver(ens => ens.forEach(en => en.target.classList.toggle('panning', en.isIntersecting)), { threshold: 0.65 });
+  $$('.work-card').forEach(c => panIO.observe(c));
+}
+
 /* ---------- Formulario ---------- */
 const form = $('#contactForm'), fbtn = $('#formBtn'), ftxt = fbtn.querySelector('.txt');
 form.addEventListener('submit', async e => {
