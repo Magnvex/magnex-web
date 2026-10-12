@@ -465,6 +465,33 @@ function initScroll() {
     gsap.to('.manifesto .mw', { opacity: 1, stagger: 0.12, ease: 'none', scrollTrigger: { trigger: '.manifesto p', start: 'top 80%', end: 'bottom 45%', scrub: 0.6 } });
   });
 
+  // demos de restaurantes: recorrido horizontal con parallax 3D
+  mm.add('(min-width: 900px)', () => {
+    const sec = $('#demos'), track = $('#demos-track');
+    if (!sec) return;
+    sec.classList.add('is-pinned');
+    const cards = $$('.demo', sec);
+    const dist = () => track.scrollWidth - innerWidth;
+    const tween = gsap.to(track, { x: () => -dist(), ease: 'none', scrollTrigger: { trigger: '#demos .demos-pin', start: 'top top', end: () => '+=' + dist(), pin: true, scrub: 0.8, invalidateOnRefresh: true, onEnter: () => Sound.whoosh() } });
+    cards.forEach(d => {
+      ScrollTrigger.create({ trigger: d, containerAnimation: tween, start: 'left right', end: 'right left', onUpdate: s => d.style.setProperty('--p', (1 - 2 * s.progress).toFixed(3)), onEnter: () => Sound.whoosh(0.5) });
+      gsap.from(d.querySelectorAll('.demo-copy > *'), { y: 50, opacity: 0, ease: 'none', stagger: 0.08, scrollTrigger: { trigger: d, containerAnimation: tween, start: 'left 96%', end: 'left 40%', scrub: true } });
+      gsap.from(d.querySelector('.demo-card'), { scale: 0.9, ease: 'none', scrollTrigger: { trigger: d, containerAnimation: tween, start: 'left 100%', end: 'left 30%', scrub: true } });
+    });
+    gsap.from('.demos-end > *', { y: 50, opacity: 0, ease: 'none', stagger: 0.1, scrollTrigger: { trigger: '.demos-end', containerAnimation: tween, start: 'left 100%', end: 'left 55%', scrub: true } });
+    return () => { sec.classList.remove('is-pinned'); cards.forEach(d => d.style.removeProperty('--p')); };
+  });
+  mm.add('(max-width: 899px)', () => {
+    gsap.from('#demos-rail', { x: 80, opacity: 0, duration: 1.4, ease: 'expo.out', scrollTrigger: { trigger: '#demos-rail', start: 'top 85%', onEnter: () => Sound.whoosh(0.6) } });
+  });
+  if (finePointer) $$('.demo-stage').forEach(stage => {
+    const tilt = stage.querySelector('.dev-tilt');
+    const rx = gsap.quickTo(tilt, 'rotationX', { duration: 0.9, ease: 'power3.out' });
+    const ry = gsap.quickTo(tilt, 'rotationY', { duration: 0.9, ease: 'power3.out' });
+    stage.addEventListener('pointermove', e => { const r = stage.getBoundingClientRect(); ry(((e.clientX - r.left) / r.width - 0.5) * 16); rx(((e.clientY - r.top) / r.height - 0.5) * -12); });
+    stage.addEventListener('pointerleave', () => { rx(0); ry(0); });
+  });
+
   // pilares horizontales
   mm.add('(min-width: 900px)', () => {
     const track = $('#pillars-track');
@@ -538,5 +565,29 @@ function initScroll() {
   document.fonts && document.fonts.ready.then(() => ScrollTrigger.refresh());
 }
 
+/* ---------- demos: carrusel táctil (móvil, o sin animaciones) ---------- */
+function initDemosRail() {
+  const sec = $('#demos'), rail = $('#demos-rail');
+  if (!rail) return;
+  const cards = $$('.demo', rail), dots = $$('#demos-dots i');
+  let raf = 0;
+  const update = () => {
+    raf = 0;
+    if (sec.classList.contains('is-pinned')) return;
+    const rr = rail.getBoundingClientRect(), mid = rr.left + rr.width / 2;
+    let best = 0, bestD = Infinity;
+    cards.forEach((c, i) => {
+      const r = c.getBoundingClientRect(), off = (r.left + r.width / 2 - mid) / r.width;
+      if (!reduced) c.style.setProperty('--p', Math.max(-1, Math.min(1, off)).toFixed(3));
+      if (Math.abs(off) < bestD) { bestD = Math.abs(off); best = i; }
+    });
+    dots.forEach((d, i) => d.classList.toggle('on', i === best));
+  };
+  rail.addEventListener('scroll', () => { if (!raf) raf = requestAnimationFrame(update); }, { passive: true });
+  addEventListener('resize', () => { if (!raf) raf = requestAnimationFrame(update); });
+  update();
+}
+
 initScroll();
+initDemosRail();
 runLoaderThen(heroIntro);
