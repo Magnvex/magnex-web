@@ -555,6 +555,7 @@ footer{padding:80px 0 34px;border-top:1px solid var(--line);overflow:hidden}
 .demo-n i{width:34px;height:1px;background:currentColor;opacity:.6}
 .demo-name{font-family:var(--d-font);font-weight:400;font-size:clamp(2.5rem,5.4vw,5.6rem);line-height:.98;letter-spacing:-.01em;text-wrap:balance}
 .demo-name i{font-style:italic;color:var(--d-acc)}
+.demo-name small{display:block;margin-top:.3em;font-size:.36em;letter-spacing:.08em;line-height:1.1;color:var(--d-acc)}
 .demo-kind{margin-top:16px;font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;opacity:.75}
 .demo-desc{margin-top:clamp(16px,2vw,24px);font-family:var(--d-sans);font-size:clamp(.95rem,1.15vw,1.08rem);line-height:1.65;max-width:42ch;opacity:.92}
 .demo-tags{list-style:none;display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
@@ -641,14 +642,14 @@ footer{padding:80px 0 34px;border-top:1px solid var(--line);overflow:hidden}
 .mini--jabu .mini-sub{color:#0b2a20}
 .mini--jabu .mini-sub em{display:block;font-style:italic;color:#0f3d2e}
 .mini-sticker{position:absolute;right:7cqw;top:5cqw;width:11cqw;height:11cqw;border-radius:50%;display:flex;align-items:center;justify-content:center;background:#ffb627;color:#0b2a20;font-weight:800;font-size:1.5cqw;text-transform:uppercase;letter-spacing:.06em;transform:rotate(-14deg)}
-.mini--jabu.is-phone .mini-title{font-size:22cqw;line-height:.9}
+.mini--jabu.is-phone .mini-title{font-size:17cqw;line-height:.9}
 .mini--jabu.is-phone .mini-blob{width:70cqw;height:52cqw;top:56%}
 .mini--jabu.is-phone .mini-sub{font-size:6.4cqw;margin-top:22cqw}
 
 .mini--chido{--m-bg:#f4e2bd;--m-ink:#3d1c0f;--m-acc:#5b2a17;--m-on:#f4e2bd;--m-rib:linear-gradient(#5b2a17 0 25%,#b8401b 0 50%,#d9531e 0 75%,#e9a42b 0);--m-font:'Shrikhand','Cooper Black',Georgia,serif;--m-sans:'DM Sans',system-ui,sans-serif}
 .mini-sun{position:absolute;left:50%;bottom:0;width:70cqw;height:35cqw;transform:translateX(-50%);border-radius:35cqw 35cqw 0 0;background:radial-gradient(circle at 50% 100%,#5b2a17 0 15cqw,#b8401b 15cqw 21cqw,#d9531e 21cqw 27cqw,#e9a42b 27cqw 33cqw,transparent 33cqw)}
 .mini--chido .mini-hero{justify-content:flex-start;padding-top:5cqw}
-.mini--chido .mini-title{color:#d9531e;font-size:10cqw;text-shadow:.5cqw .5cqw 0 #5b2a17}
+.mini--chido .mini-title{color:#d9531e;font-size:8cqw;text-shadow:.5cqw .5cqw 0 #5b2a17}
 .mini--chido .mini-eyebrow{color:#5b2a17;font-weight:700}
 .mini--chido .mini-cta{background:#e9a42b;color:#3d1c0f}
 .mini--chido.is-phone .mini-sun{width:130cqw;height:65cqw;border-radius:65cqw 65cqw 0 0;background:radial-gradient(circle at 50% 100%,#5b2a17 0 28cqw,#b8401b 28cqw 38cqw,#d9531e 38cqw 48cqw,#e9a42b 48cqw 58cqw,transparent 58cqw)}
@@ -679,7 +680,7 @@ footer{padding:80px 0 34px;border-top:1px solid var(--line);overflow:hidden}
   .demo-name{font-size:clamp(2.2rem,10vw,3.2rem)}
   .demo-desc{font-size:.95rem}
   .demo-btn{padding:14px 22px;font-size:.88rem}
-  .demo-ghost{font-size:9rem;bottom:auto;top:30%}
+  .demo-ghost{display:none}
   .demos-intro{margin-bottom:30px}
 }
 @media (max-width:600px){

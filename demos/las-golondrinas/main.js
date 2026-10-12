@@ -108,7 +108,7 @@ function crearSonido(opts){
     $$('.hero .dots').forEach(d=>gsap.to(d,{yPercent:parseFloat(d.dataset.speed)*60,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:true}}));
     gsap.to('.caseta .pic img',{yPercent:-14,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:true}});
     gsap.to('.hero .copy',{yPercent:desk?18:8,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:true}});
-    // 1968 que se mueve
+    // 1962 que se mueve
     gsap.fromTo('.story .yr',{xPercent:-8,rotation:-6},{xPercent:6,rotation:3,ease:'none',scrollTrigger:{trigger:'.story',start:'top bottom',end:'bottom top',scrub:true}});
 
     if(desk){
@@ -141,7 +141,7 @@ function crearSonido(opts){
   $$('.ln').forEach(l=>gsap.from(l,{yPercent:110,rotation:3,duration:1,ease:'expo.out',scrollTrigger:{trigger:l.parentElement,start:'top 88%',onEnter:()=>SFX.whoosh()}}));
   $$('.cta .garland .farol').forEach((f,i)=>ScrollTrigger.create({trigger:'.cta',start:'top 70%',onEnter:()=>setTimeout(()=>f.classList.replace('off','on'),i*110),onLeaveBack:()=>f.classList.replace('on','off')}));
   $$('[data-count]').forEach(el=>{const v=parseFloat(el.dataset.count),dec=+el.dataset.dec||0,o={v:0};gsap.to(o,{v,duration:2,ease:'power3.out',scrollTrigger:{trigger:el,start:'top 92%'},onUpdate:()=>el.textContent=dec?o.v.toFixed(dec).replace('.',','):Math.round(o.v).toLocaleString('es-ES')})});
-  const yr={v:1900};gsap.to(yr,{v:1968,duration:1.6,ease:'power3.out',scrollTrigger:{trigger:'.story .year',start:'top 85%'},onUpdate:()=>$('.story .yr').textContent=Math.round(yr.v)});
+  const yr={v:1900};gsap.to(yr,{v:1962,duration:1.6,ease:'power3.out',scrollTrigger:{trigger:'.story .year',start:'top 85%'},onUpdate:()=>$('.story .yr').textContent=Math.round(yr.v)});
   gsap.from('.chip',{scale:0,rotation:()=>rnd(-12,12),duration:.7,stagger:.12,ease:'back.out(2)',scrollTrigger:{trigger:'.story .tips',start:'top 92%'}});
   gsap.from('.cols li',{x:-24,opacity:0,stagger:.05,duration:.6,ease:'power3.out',scrollTrigger:{trigger:'.cols',start:'top 82%'}});
   $$('.gal .ph img').forEach(img=>gsap.fromTo(img,{clipPath:'circle(0% at 50% 50%)'},{clipPath:'circle(75% at 50% 50%)',duration:1.2,ease:'expo.out',scrollTrigger:{trigger:img,start:'top 92%'}}));
